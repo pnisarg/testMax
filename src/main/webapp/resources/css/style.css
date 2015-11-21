@@ -1,0 +1,103 @@
+.login-panel {
+	box-shadow: -5px 5px 10px #888888;
+}
+
+.login-logo {
+	margin: auto;
+	width: 8em;
+}
+
+.homePagePanel{
+	border: 1px solid black;
+	box-shadow: -5px 5px 5px #888888;
+	border-radius: 10px;
+}
+.optionList{
+	padding: 10px;
+	font-size: 18px;
+	
+}
+input[type="radio"]{
+	margin:7px;
+}
+.error{
+    color: rgb(230,0,0);
+}
+
+.navbar-fixed-top {
+	min-height: 80px;
+}
+
+.navbar-nav>li>a {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	line-height: 80px;
+}
+
+@media ( max-width : 767px) {
+	.navbar-nav>li>a {
+		line-height: 20px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+}
+
+.navbar-default {
+	margin: 5px;
+	box-shadow: -5px 5px 5px #888888;
+}
+
+.navbar-text {
+	font-size: 16px;
+}
+a,.navbar-link{
+	padding-top: 5px;
+}
+body{
+	margin: 90px 10px 5px 10px;
+	font-family: Trebuchet MS,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Tahoma,sans-serif;
+}
+aside{
+	margin-top: 10px;
+	box-shadow: -5px 5px 10px #888888;
+	background-color: rgba(225, 225, 225, 0.5); 
+}
+article{
+	margin-top: 10px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+	box-shadow: 5px 5px 10px #888888;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #fff;
+    background-color: rgb(40,40,80);
+}
+.autocomplete-suggestions {
+	border: 1px solid #999;
+	background: #FFF;
+	overflow: auto;
+}
+
+.autocomplete-suggestion {
+	padding: 2px 5px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.autocomplete-selected {
+	background: #F0F0F0;
+}
+
+.autocomplete-suggestions strong {
+	font-weight: normal;
+	color: #3399FF;
+}
+
+.autocomplete-group {
+	padding: 2px 5px;
+}
+
+.autocomplete-group strong {
+	display: block;
+	border-bottom: 1px solid #000;
+}
