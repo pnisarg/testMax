@@ -43,8 +43,8 @@
 	<div class="container">
 		<div class="row homePagePanel well">
 			
-			<div class="col-md-12">
-				<form action="./submitTest" method="POST">
+			<div class="col-md-12" id="questionContainer">
+				<!-- <form action="./submitTest" method="POST"> -->
 				<div class="questions" id="questionPanel">
 					
 				</div>
@@ -67,9 +67,9 @@
 					</nav>
 				</div>
 				<div align="right">
-					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Submit </button>
+					<button id="submitTest" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Submit </button>
 				</div>
-				</form>
+				<!-- </form> -->
 			</div>
 			
 		</div>

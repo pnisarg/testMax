@@ -1,8 +1,13 @@
 package com.projects.testMax.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +19,11 @@ import com.projects.testMax.repository.QuestionRepository;
 public class QuestionsServiceImpl implements QuestionsService{
 	@Autowired
 	QuestionRepository questionRepo;
+	
+	private Map<Integer, Character> answersMap = new HashMap<Integer, Character>();
+	
 
+	
 	@Override
 	/**
 	 * This function adds a question into db
@@ -48,6 +57,32 @@ public class QuestionsServiceImpl implements QuestionsService{
 			}
 		}
 		return qList;
+	}
+
+	@Override
+	public int evaluateTest(String qIdList, String ansList) {
+		String[] qIdstring = qIdList.split(",");
+		Integer[] qIds = new Integer[qIdstring.length];
+//		for(int i=0;i<qIdstring.length; i++) qIds[i] = Integer.parseInt(qIdstring[i]);
+		String[] userAnswers = ansList.split(",");
+		int result = 0;
+		for(int i=0;i<qIdstring.length; i++){
+			if(String.valueOf(answersMap.get(Integer.parseInt(qIdstring[i]))).equals(userAnswers[i]))
+				result++;
+		}
+		return result;
+//		Integer[] qIds = (Integer[]) new Integer[qIdstring.length];
+//		Iterable<Integer> iterable= Arrays.asList(qIds);
+//		List<Questions> questions = questionRepo.findAll(iterable);
+	}
+
+	@Override
+	@PostConstruct
+	public void populateAnswers() {
+		List<Questions> questions = questionRepo.findAll();
+		for(Questions question : questions){
+			answersMap.put(question.getqId(), question.getCorrectAnswer());
+		}
 	}
 
 }

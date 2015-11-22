@@ -16,19 +16,34 @@ $(document).ready(function(){
 		$(page).show();
 	});
 	
-//	$('#submitTest').click(function(){
-//		var ansList = [];
-//		//Dynamically creating answer list. Works for any number of questions
-//		for(var i=1; i<= noOfQuestion; i++)
-//			ansList.push($('#question'+i+' input[type=radio]:checked').val());
-//		$.ajax({
-//			url: './submitTest',
-//			method: 'POST',
-//			data:qIdList,
-//			success: successFunction
-//		});
-//	});
+	$('#submitTest').click(function(){
+		var ansList = "";
+		var qList = qIdList.join();
+		//Dynamically creating answer list. Works for any number of questions
+		for(var i=1; i< noOfQuestion; i++)
+			ansList += $('#question'+i+' input[type=radio]:checked').val()+",";
+		ansList += $('#question'+i+' input[type=radio]:checked').val();
+		
+		$.ajax({
+			url: './submitTest',
+			method: 'POST',
+			data:{
+				'ansList':ansList,
+				'qIdList':qList
+			},
+			success: displayResult
+		});
+	});
 });
+
+function displayResult(result){
+	var container = $('#questionContainer').html('');
+	var resultString = "Total: "+result;
+	var resultDiv = $('<div class="displayResult">');
+	resultDiv.append(resultString);
+	container.append(resultDiv);
+}
+optionMap = ['a','b','c','d','e','f','g'];
 
 function successFunction(result){
 	var qPanel = $('#questionPanel').html('');
@@ -41,7 +56,7 @@ function successFunction(result){
 		var optionListNode = $('<div class="optionList">');
 		var optionList = result[i].optionList.split('|');
 		for(var j=0; j< optionList.length; j++){
-			option = '<input type="radio" name="question'+(i+1)+'" value="'+(j+1)+'" >';
+			option = '<input type="radio" name="question'+(i+1)+'" value="'+optionMap[j]+'" >';
 			option += optionList[j]+"<br>";
 //			option.append(optionList[j]+"<br>");
 			optionListNode.append(option);
