@@ -44,11 +44,11 @@
 		<div class="row homePagePanel well">
 			
 			<div class="col-md-12">
-				<form action="" method="POST">
+				<form action="./submitTest" method="POST">
 				<div class="questions" id="questionPanel">
 					
 				</div>
-				
+				<input type="hidden" id="hiddenqIdList" name="qIdList" value="">
 				<div class="paging" align="center">
 					<nav>
 						<ul class="pagination">
