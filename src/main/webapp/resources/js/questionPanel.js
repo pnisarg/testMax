@@ -39,7 +39,7 @@ $(document).ready(function(){
 function displayResult(result){
 	var container = $('#questionContainer').html('');
 	var resultString = "Total: "+result;
-	var resultDiv = $('<div class="displayResult">');
+	var resultDiv = $('<div class="displayResult" align="center">');
 	resultDiv.append(resultString);
 	container.append(resultDiv);
 }

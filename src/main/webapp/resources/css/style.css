@@ -12,6 +12,9 @@
 	box-shadow: -5px 5px 5px #888888;
 	border-radius: 10px;
 }
+.displayResult{
+	font-size: 24px;
+}
 .optionList{
 	padding: 10px;
 	font-size: 18px;
