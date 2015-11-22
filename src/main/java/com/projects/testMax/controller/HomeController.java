@@ -1,3 +1,4 @@
+
 package com.projects.testMax.controller;
 
 import java.io.IOException;
@@ -42,6 +43,7 @@ public class HomeController {
 			HttpSession session = request.getSession();
 			session.setAttribute("fname", user.getFirstName());
 			session.setAttribute("lname", user.getLastName());
+			session.setAttribute("username", user.getUsername());
 			session.setAttribute("privilege", user.getPrivilege());
 			if(user.getPrivilege().equalsIgnoreCase("user"))
 				return new ModelAndView("home");
@@ -72,5 +74,12 @@ public class HomeController {
 	public ModelAndView takeTest(HttpServletResponse response,HttpServletRequest request){
 		return new ModelAndView("questionPanel");
 	}
+	
+	@RequestMapping(value="review", method = RequestMethod.POST)
+	public ModelAndView review(HttpServletResponse response,HttpServletRequest request){
+		return new ModelAndView("reviewPanel");
+	}
+	
+	
 	
 }

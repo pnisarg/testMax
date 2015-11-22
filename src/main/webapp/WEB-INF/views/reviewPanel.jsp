@@ -40,20 +40,41 @@
 	</div>
 	<!-- End of Row 1 navbar -->
 
-	<div align="center">
-	<form method="POST" action="./takeTest">
-		<button class="btn btn-primary btn-lg" id="takeTestButton">Take a Test</button>
-	</form><br>
-	<form method="POST" action="./review"><button class="btn btn-primary btn-lg" id="review">Review</button></form>
+	<div class="container">
+		<div class="row homePagePanel well">
+			
+			<div class="col-md-12" id="reviewquestionContainer">
+				<!-- <form action="./submitTest" method="POST"> -->
+				<div class="questions" id="reviewquestionPanel">
+					
+				</div>
+				<div class="paging" align="center">
+					<nav>
+						<ul class="pagination">
+							<li class="disabled"><a href="#" aria-label="Previous"> <span
+									aria-hidden="true" class="diabaled">&laquo;</span>
+							</a></li>
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li class="disabled"><a href="#" aria-label="Next"> <span
+									aria-hidden="true">&raquo;</span>
+							</a></li>
+						</ul>
+					</nav>
+				</div>
+				<!-- </form> -->
+			</div>
+			
+		</div>
 	</div>
-	
-
-
 
 	<!-- javascript -->
 	<script src="resources/js/jquery.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
-	<script src="resources/js/homeScript.js"></script>
+	<script src="resources/js/reviewPanel.js"></script>
 
 </body>
 </html>

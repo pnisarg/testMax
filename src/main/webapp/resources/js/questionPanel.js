@@ -11,6 +11,9 @@ $(document).ready(function(){
 	$('#question1').show();
 	
 	$(".pagination a").click(function(){
+		//highlight selected page
+		$('.pagination li[class=active]').removeAttr("class");
+		this.parentNode.setAttribute("class","active");
 		var page = "#question"+this.childNodes[0].nodeValue;
 		$('.questionDiv').hide();
 		$(page).show();
@@ -20,8 +23,18 @@ $(document).ready(function(){
 		var ansList = "";
 		var qList = qIdList.join();
 		//Dynamically creating answer list. Works for any number of questions
-		for(var i=1; i< noOfQuestion; i++)
+		var i;
+		for(i=1; i< noOfQuestion; i++){
+			if($('#question'+i+' input[type=radio]:checked').length == 0){
+				alert("There are some unanswered questions. Please answer all questions before submitting.");
+				return;
+			}
 			ansList += $('#question'+i+' input[type=radio]:checked').val()+",";
+		}
+		if($('#question'+i+' input[type=radio]:checked').length == 0){
+			alert("There are some unanswered questions. Please answer all questions before submitting.");
+			return;
+		}
 		ansList += $('#question'+i+' input[type=radio]:checked').val();
 		
 		$.ajax({
@@ -29,22 +42,27 @@ $(document).ready(function(){
 			method: 'POST',
 			data:{
 				'ansList':ansList,
-				'qIdList':qList
+				'qIdList':qList,
+				'timestamp':timestamp
 			},
 			success: displayResult
 		});
 	});
 });
-
+//display result after test is over. Result contains final score evaluated and returned by server.
 function displayResult(result){
 	var container = $('#questionContainer').html('');
-	var resultString = "Total: "+result;
+	var total = qIdList.length;
+	var correct = result;
+	var resultString = "Score: "+correct+"<br>Total questions: "+total;
 	var resultDiv = $('<div class="displayResult" align="center">');
 	resultDiv.append(resultString);
 	container.append(resultDiv);
 }
 optionMap = ['a','b','c','d','e','f','g'];
+timestamp = 0;
 
+//Display questions on screen. result contains list of questions and options
 function successFunction(result){
 	var qPanel = $('#questionPanel').html('');
 	noOfQuestion = result.length;
@@ -63,7 +81,7 @@ function successFunction(result){
 		}
 		
 		var qString = $('<div class="qString lead">');
-		qString.append(result[i].qString.trim());
+		qString.append('<b>Question '+(i+1)+':</b> '+result[i].qString.trim());
 		question.append(qString);
 		question.append(optionListNode);
 		qPanel.append(question);
@@ -71,5 +89,5 @@ function successFunction(result){
 	$('#hiddenqIdList').val(qIdList);
 	$('.questionDiv').hide();
 	$('#question1').show();
-	
+	timestamp = new Date().getTime();
 }
